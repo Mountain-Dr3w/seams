@@ -1,26 +1,121 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg: #000000;
+  --bg-subtle: #0a0a0a;
+  --bg-hover: #111111;
+  --border: rgba(255, 255, 255, 0.1);
+  --border-active: rgba(255, 255, 255, 0.25);
+  --text-primary: rgba(255, 255, 255, 0.95);
+  --text-secondary: rgba(255, 255, 255, 0.65);
+  --text-muted: rgba(255, 255, 255, 0.35);
+  --accent: #4ade80;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
 }
 
+html,
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text-secondary);
+  font-family: var(--font-geist-mono), "Courier New", monospace;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* MDX prose styles */
+.prose h2 {
+  color: var(--accent);
+  font-weight: 400;
+  font-family: inherit;
+  font-size: 0.8rem;
+  text-transform: none;
+  letter-spacing: 0.05em;
+  margin-top: 2.5rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border);
+}
+
+.prose h3 {
+  color: var(--text-primary);
+  font-weight: 300;
+  font-family: inherit;
+  font-size: 1rem;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose p {
+  line-height: 1.75;
+  margin-bottom: 1.25rem;
+  font-size: 1rem;
+  color: var(--text-secondary);
+}
+
+.prose a {
+  color: var(--text-primary);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: var(--border-active);
+}
+
+.prose a:hover {
+  text-decoration-color: var(--accent);
+}
+
+.prose code {
+  font-family: inherit;
+  font-size: 0.85em;
+  color: var(--accent);
+  background: var(--bg-hover);
+  padding: 0.15em 0.4em;
+  border-radius: 3px;
+}
+
+.prose pre {
+  background: var(--bg-subtle);
+  border: 1px solid var(--border);
+  padding: 1rem;
+  overflow-x: auto;
+  margin: 1.5rem 0;
+}
+
+.prose pre code {
+  background: none;
+  padding: 0;
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+}
+
+.prose ul,
+.prose ol {
+  padding-left: 1.25rem;
+  margin-bottom: 1.25rem;
+}
+
+.prose li {
+  line-height: 1.75;
+  margin-bottom: 0.25rem;
+  color: var(--text-secondary);
+}
+
+.prose blockquote {
+  border-left: 2px solid var(--accent);
+  padding-left: 1rem;
+  margin-left: 0;
+  color: var(--text-muted);
+}
+
+.prose hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2rem 0;
 }
