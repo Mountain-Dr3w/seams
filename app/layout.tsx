@@ -43,7 +43,7 @@ export default function RootLayout({
             </Link>
           </nav>
         </header>
-        <main className="flex-1 px-6 sm:px-10 py-12 max-w-2xl mx-auto w-full">
+        <main className="flex-1 px-6 sm:px-10 py-12 max-w-3xl mx-auto w-full">
           {children}
         </main>
         <footer className="border-t border-[var(--border)] px-6 sm:px-10 py-6">

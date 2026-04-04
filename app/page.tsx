@@ -11,7 +11,7 @@ export default function Home() {
           dispatch
         </h1>
         <p className="font-mono text-sm text-[var(--text-secondary)] leading-relaxed max-w-lg">
-          thoughts and case studies from a designer learning to build. shipping in public.
+          thoughts and case studies from a designer learning to build.
         </p>
       </div>
 
