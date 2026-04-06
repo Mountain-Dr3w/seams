@@ -17,7 +17,7 @@ export async function generateMetadata({
   const post = getPost(slug);
   if (!post) return {};
   return {
-    title: `${post.title} — dispatch`,
+    title: `${post.title} — seams`,
     description: post.description,
     openGraph: {
       title: post.title,
@@ -44,7 +44,7 @@ export default async function PostPage({
           href="/"
           className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--text-secondary)] transition-colors mb-6 block"
         >
-          ← all dispatches
+          ← all posts
         </Link>
         <h1 className="font-mono text-2xl sm:text-3xl font-light text-[var(--text-primary)] mb-3">
           {post.title}

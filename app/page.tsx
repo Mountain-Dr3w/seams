@@ -8,7 +8,7 @@ export default function Home() {
     <div>
       <div className="mb-12">
         <h1 className="font-mono text-2xl sm:text-3xl font-light text-[var(--text-primary)] mb-3">
-          dispatch
+          seams
         </h1>
         <p className="font-mono text-sm text-[var(--text-secondary)] leading-relaxed max-w-lg">
           thoughts and case studies from a designer learning to build.
@@ -17,7 +17,7 @@ export default function Home() {
 
       {posts.length === 0 ? (
         <p className="font-mono text-sm text-[var(--text-muted)]">
-          first dispatch incoming_
+          first post incoming_
         </p>
       ) : (
         <div className="space-y-0">

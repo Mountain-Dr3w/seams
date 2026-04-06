@@ -9,10 +9,10 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "dispatch",
+  title: "seams",
   description: "Thoughts and case studies from Drew — designer turning full-stack builder.",
   openGraph: {
-    siteName: "dispatch",
+    siteName: "seams",
     type: "website",
   },
 };
@@ -27,9 +27,9 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[var(--bg)]">
         <header className="border-b border-[var(--border)] px-6 sm:px-10 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <DispatchMark />
+            <SeamsMark />
             <span className="font-mono text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
-              dispatch
+              seams
             </span>
           </Link>
           <nav className="flex items-center gap-6">
@@ -48,7 +48,7 @@ export default function RootLayout({
         </main>
         <footer className="border-t border-[var(--border)] px-6 sm:px-10 py-6">
           <p className="font-mono text-xs text-[var(--text-muted)]">
-            dispatch — by{" "}
+            seams — by{" "}
             <a
               href="https://linkedin.com/in/drewux/"
               className="text-[var(--text-secondary)] hover:text-[var(--text-primary)] transition-colors"
@@ -64,7 +64,7 @@ export default function RootLayout({
   );
 }
 
-function DispatchMark() {
+function SeamsMark() {
   return (
     <svg
       width="20"
