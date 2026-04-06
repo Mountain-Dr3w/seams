@@ -3,20 +3,36 @@ import { getAllPosts } from "@/lib/posts";
 
 export default function Home() {
   const posts = getAllPosts();
+  const allTags = Array.from(
+    new Set(posts.flatMap((p) => p.tags ?? []))
+  ).sort();
 
   return (
     <div>
       <div className="mb-12">
-        <h1 className="font-mono text-2xl sm:text-3xl font-light text-[var(--text-primary)] mb-3">
+        <h1 className="font-serif text-2xl sm:text-3xl font-light text-[var(--text-primary)] mb-3 italic">
           seams
         </h1>
-        <p className="font-mono text-sm text-[var(--text-secondary)] leading-relaxed max-w-lg">
+        <p className="font-serif text-sm text-[var(--text-secondary)] leading-relaxed max-w-lg">
           thoughts and case studies from a designer learning to build.
         </p>
       </div>
 
+      {allTags.length > 0 && (
+        <div className="flex gap-3 mb-8 flex-wrap">
+          {allTags.map((tag) => (
+            <span
+              key={tag}
+              className="font-mono text-[0.65rem] text-[var(--text-muted)] uppercase tracking-wide border border-[var(--border)] px-2 py-1 hover:border-[var(--border-active)] hover:text-[var(--text-secondary)] transition-colors cursor-default"
+            >
+              {tag}
+            </span>
+          ))}
+        </div>
+      )}
+
       {posts.length === 0 ? (
-        <p className="font-mono text-sm text-[var(--text-muted)]">
+        <p className="font-serif text-sm text-[var(--text-muted)] italic">
           first post incoming_
         </p>
       ) : (
@@ -26,9 +42,9 @@ export default function Home() {
               key={post.slug}
               className={`py-5 ${i < posts.length - 1 ? "border-b border-[var(--border)]" : ""}`}
             >
-              <Link href={`/${post.slug}`} className="group block">
+              <Link href={`/${post.slug}`} className="group block cursor-pointer">
                 <div className="flex items-baseline justify-between gap-4 mb-1">
-                  <h2 className="font-mono text-base text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+                  <h2 className="font-serif text-base text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
                     {post.title}
                   </h2>
                   <time className="font-mono text-xs text-[var(--text-muted)] shrink-0">
@@ -36,7 +52,7 @@ export default function Home() {
                   </time>
                 </div>
                 {post.description && (
-                  <p className="font-mono text-sm text-[var(--text-secondary)] leading-relaxed">
+                  <p className="font-serif text-sm text-[var(--text-secondary)] leading-relaxed">
                     {post.description}
                   </p>
                 )}

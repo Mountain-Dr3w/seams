@@ -1,18 +1,21 @@
 @import "tailwindcss";
 
 :root {
-  --bg: #000000;
-  --bg-subtle: #0a0a0a;
-  --bg-hover: #111111;
-  --border: rgba(255, 255, 255, 0.1);
-  --border-active: rgba(255, 255, 255, 0.25);
-  --text-primary: rgba(255, 255, 255, 0.95);
-  --text-secondary: rgba(255, 255, 255, 0.65);
-  --text-muted: rgba(255, 255, 255, 0.35);
-  --accent: #4ade80;
+  --bg: #111110;
+  --bg-subtle: #1a1918;
+  --bg-hover: #222120;
+  --border: #2a2826;
+  --border-active: #3d3a36;
+  --text-primary: #e8e4de;
+  --text-secondary: #a8a29e;
+  --text-muted: #6b6560;
+  --text-faint: #44403c;
+  --accent: #c4965a;
+  --accent-muted: #a87d4a;
 }
 
 @theme inline {
+  --font-serif: var(--font-lora);
   --font-mono: var(--font-geist-mono);
 }
 
@@ -26,7 +29,7 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--text-secondary);
-  font-family: var(--font-geist-mono), "Courier New", monospace;
+  font-family: var(--font-lora), Georgia, serif;
   -webkit-font-smoothing: antialiased;
 }
 
@@ -34,10 +37,9 @@ body {
 .prose h2 {
   color: var(--accent);
   font-weight: 400;
-  font-family: inherit;
-  font-size: 0.8rem;
-  text-transform: none;
-  letter-spacing: 0.05em;
+  font-family: var(--font-lora), Georgia, serif;
+  font-size: 1.15rem;
+  font-style: italic;
   margin-top: 2.5rem;
   margin-bottom: 0.75rem;
   padding-bottom: 0.5rem;
@@ -46,15 +48,15 @@ body {
 
 .prose h3 {
   color: var(--text-primary);
-  font-weight: 300;
-  font-family: inherit;
+  font-weight: 400;
+  font-family: var(--font-lora), Georgia, serif;
   font-size: 1rem;
   margin-top: 1.5rem;
   margin-bottom: 0.5rem;
 }
 
 .prose p {
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 1.25rem;
   font-size: 1rem;
   color: var(--text-secondary);
@@ -72,7 +74,7 @@ body {
 }
 
 .prose code {
-  font-family: inherit;
+  font-family: var(--font-geist-mono), "Courier New", monospace;
   font-size: 0.85em;
   color: var(--accent);
   background: var(--bg-hover);
@@ -102,7 +104,7 @@ body {
 }
 
 .prose li {
-  line-height: 1.75;
+  line-height: 1.8;
   margin-bottom: 0.25rem;
   color: var(--text-secondary);
 }
@@ -112,6 +114,7 @@ body {
   padding-left: 1rem;
   margin-left: 0;
   color: var(--text-muted);
+  font-style: italic;
 }
 
 .prose hr {

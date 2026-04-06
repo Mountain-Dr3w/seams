@@ -1,7 +1,13 @@
 import type { Metadata } from "next";
+import { Lora } from "next/font/google";
 import { Geist_Mono } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
+
+const lora = Lora({
+  variable: "--font-lora",
+  subsets: ["latin"],
+});
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
@@ -23,12 +29,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${geistMono.variable} h-full`}>
+    <html lang="en" className={`${lora.variable} ${geistMono.variable} h-full`}>
       <body className="min-h-full flex flex-col bg-[var(--bg)]">
         <header className="border-b border-[var(--border)] px-6 sm:px-10 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <SeamsMark />
-            <span className="font-mono text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+            <span className="font-serif text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
               seams
             </span>
           </Link>
@@ -76,7 +82,7 @@ function SeamsMark() {
     >
       {/* Sharp-cornered square border */}
       <rect x="0.5" y="0.5" width="19" height="19" stroke="currentColor" strokeOpacity="0.4" />
-      {/* Right-pointing chevron — terminal prompt / send */}
+      {/* Right-pointing chevron — terminal prompt */}
       <polyline
         points="6,6 12,10 6,14"
         stroke="currentColor"
