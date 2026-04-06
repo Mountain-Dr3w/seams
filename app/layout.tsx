@@ -16,7 +16,7 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "seams",
-  description: "Thoughts and case studies from Drew — designer turning full-stack builder.",
+  description: "The space between designing it and building it.",
   openGraph: {
     siteName: "seams",
     type: "website",
@@ -33,7 +33,7 @@ export default function RootLayout({
       <body className="min-h-full flex flex-col bg-[var(--bg)]">
         <header className="border-b border-[var(--border)] px-6 sm:px-10 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
-            <SeamsMark />
+            <RabbitMark />
             <span className="font-serif text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
               seams
             </span>
@@ -70,36 +70,21 @@ export default function RootLayout({
   );
 }
 
-function SeamsMark() {
+function RabbitMark() {
   return (
     <svg
       width="20"
       height="20"
-      viewBox="0 0 20 20"
+      viewBox="0 0 32 32"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
       aria-hidden="true"
     >
-      {/* Sharp-cornered square border */}
-      <rect x="0.5" y="0.5" width="19" height="19" stroke="currentColor" strokeOpacity="0.4" />
-      {/* Right-pointing chevron — terminal prompt */}
-      <polyline
-        points="6,6 12,10 6,14"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="square"
-        strokeLinejoin="miter"
-        fill="none"
-      />
-      <line
-        x1="12"
-        y1="10"
-        x2="15"
-        y2="10"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        strokeLinecap="square"
-      />
+      <rect x="7" y="2" width="5" height="13" fill="currentColor" />
+      <rect x="20" y="2" width="5" height="13" fill="currentColor" />
+      <rect x="3" y="13" width="26" height="17" fill="currentColor" />
+      <rect x="9" y="19" width="4" height="4" fill="var(--bg)" />
+      <rect x="19" y="19" width="4" height="4" fill="var(--bg)" />
     </svg>
   );
 }

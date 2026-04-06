@@ -14,7 +14,7 @@ export default function Home() {
           seams
         </h1>
         <p className="font-serif text-sm text-[var(--text-secondary)] leading-relaxed max-w-lg">
-          thoughts and case studies from a designer learning to build.
+          the space between designing it and building it.
         </p>
       </div>
 
