@@ -16,6 +16,11 @@ export interface Post extends PostMeta {
   content: string;
 }
 
+function safeSlug(slug: string): string | null {
+  if (!/^[a-z0-9][a-z0-9-]*$/.test(slug)) return null;
+  return slug;
+}
+
 export function getAllPosts(): PostMeta[] {
   if (!fs.existsSync(POSTS_DIR)) return [];
 
@@ -38,7 +43,9 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPost(slug: string): Post | null {
-  const filePath = path.join(POSTS_DIR, `${slug}.mdx`);
+  const safe = safeSlug(slug);
+  if (!safe) return null;
+  const filePath = path.join(POSTS_DIR, `${safe}.mdx`);
   if (!fs.existsSync(filePath)) return null;
 
   const raw = fs.readFileSync(filePath, "utf-8");
