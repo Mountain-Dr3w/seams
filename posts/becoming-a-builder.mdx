@@ -1,0 +1,52 @@
+---
+title: becoming a builder
+date: 2026-04-05
+description: On designers who ship, the career I think we're all headed toward, and why I started building Velveteen.
+tags: [building, design, velveteen]
+---
+
+I've been a designer for nearly a decade now. Product design, service design, the kind of work where you spend weeks mapping out how something should behave and then write it up in a way that helps someone else go build it. I love it. I love the systems thinking, and I loved being the person who could work with users to articulate why something wasn't working before anyone else had the language for it. That part of the job still matters to me.
+
+There's something that I realized happens when you do that for long enough. You start noticing how many of your ideas just sit there. You put together a journey map, a service blueprint, or a prototype and it goes into a backlog. Sometimes it gets built. Sometimes it gets half-built, or built later in a way that doesn't match what you intended, or it just never moves because the engineering team had other priorities. You can't really be upset about that because everyone's busy and there are real constraints on everyone's time. Your work ends up living in Figma files and Miro boards and decks that people nod at in meetings and then forget about. I don't think I understood how much that was wearing on me until I started being able to do something about it.
+
+## the tools changed
+
+In short, AI coding tools got good. Good enough, even, that someone with my background, who understands how software should work but had rarely written production code, could start building functional applications. Real ones, with logins and databases and deployment pipelines. Things people can actually use.
+
+I should be specific about what that process looked like, because I think there's a temptation to make it sound like a montage but it wasn't. I described features in plain language, the AI generated code. A lot of that code was broken or weird or structured in ways I didn't understand, but I iterated on it, asked questions about it, and slowly started recognizing patterns and developing taste for what good code looked like even when I couldn't write it from scratch. I spent months feeling slightly lost inside my own project. It was also the most creatively alive I've felt in years, and I've been spending a lot of time reflecting on why those two things happened at the same time.
+
+I think it's because building changed how I viewed design. When you're the one making the thing, it pushes back against your assumptions in ways that you don't notice when you're not involved in implementation. You realize your clean onboarding flow needs to account for what happens when an API call takes four seconds instead of one, and that the loading state you never designed for is actually where users spend most of their time. That kind of feedback has always existed but I was a level removed from it. There's a difference between reading about an issue and watching your own build fall over because of it.
+
+There's a concept in woodworking and ceramics about having a conversation with your material. A woodworker doesn't just execute a plan because the grain of the wood has opinions and the good work comes from responding to them. I think design as a field has been operating at a distance from its material for a while now. We got very sophisticated at that distance, but something was missing and building is what gave it back to me.
+
+> *I spent years planning without touching the wood. The tools we have now are an invitation to come back to the material.*
+
+## where the field is going
+
+I have opinions about where the design field is headed that I know are at least partly self-serving, so I want to just say that upfront and then make the argument anyway.
+
+I first entered the design field as part of the Air Force's Kessel Run, and since then the design career path has been moving toward more abstraction. You start out as someone who makes things and you "grow" into someone who makes strategy decks about things. More frameworks, more workshops, more operating models. As you progress through your career you move upstream, away from making and toward orchestrating how things get made. That made sense when building was expensive and required years of specialized training. The most leverage a designer could get was in shaping what the team built so engineering effort didn't go to waste.
+
+But building isn't expensive like that anymore and when the cost of making something drops as dramatically as it has in the last two years, the value proposition of being the person who only shapes and never ships starts to get a little shaky. I don't think that role goes away entirely. Complex systems still need people who can hold the whole picture in their head and think clearly about it, but the premium is shifting toward people who can hold the whole picture and then go build a working version of it. There's a lot of value in someone who can close the gap between insight and implementation without needing a handoff in between.
+
+I already see this playing out around me. The designers I talk to who are energized right now are the ones who picked up Cursor or Claude six months ago and started building alongside their design work. They're shipping internal tools, prototyping in real code instead of Figma, and standing up small apps that solve specific problems their teams have. The designers who seem anxious are the ones still positioned as the person who thinks about a thing and then waits for someone else to make it. I was that second person for a long time, so I get the anxiety. It's a hard identity to let go of when it's been working for you.
+
+I **WANT** the field to go in this direction. I think it's probably going there regardless of what anyone wants, but I'm not a neutral observer and I'm not going to pretend to be. The version of design that excites me is one where designers build. I want to be the person carrying intent all the way through to something live and working. And the deeper I get into building myself, the more respect I have for engineering as a discipline, so I don't say any of this to diminish that work. I say it because the best design work I've ever done has been the stuff I've also helped build.
+
+I think a lot of discussion about where the field is going really breaks down into what job titles will be in the future. I have no idea what the job titles look like in five years and I honestly don't think it matters at all. Over the course of my career I've been an ISSO, a product designer, a service designer, a PM. The title changed but the way I work didn't. I like to chase problems, figure out why something isn't working for the people who have to live with it, and then I try to make it better. That's been the constant across every role, and it carries forward no matter what we end up calling the job.
+
+## why velveteen
+
+The name Velveteen comes from The Velveteen Rabbit, a children's book about a toy that becomes real through being genuinely loved and used. (I have a one year old daughter who loves books, so this name came naturally.) I named it that because the apps people are building with AI tools right now remind me of that story. They're real in intent. Someone cared enough about a problem to sit down and describe a solution and iterate on it until it worked on their laptop. Where it falls apart is getting from "works on my machine" to "works in the world." I really believe that gap is almost entirely an infrastructure and security problem.
+
+I kept hitting that wall myself. I'd build something I was proud of and then spend days fighting with Docker, environment variables, deployment pipelines, all stuff that has nothing to do with whether the app is "good" or solves a real problem. Going through this myself, I started noticing that the people hitting this wall are often the ones building the most interesting things, because they're building from domain expertise rather than engineering background. Teachers making classroom tools. Nonprofit workers automating processes that eat up their week. People who understand their problem space at a level most software companies never will, and just need the last mile to not be a cliff.
+
+I want to give people Velveteen to handle that last mile. You connect your GitHub, pick a repo, and it figures out your framework, generates the infrastructure files you're missing, runs a security pipeline, and explains anything it finds in language you can actually do something with. When everything passes, it deploys to a live URL. I wrote more about the specifics on the [about page](/about), and the full technical breakdown is [under the hood](/technology).
+
+I keep thinking about what happens when that barrier comes down for a lot of people at once. Thousands of small, specific, mission-driven apps getting into the hands of the people they were built for. That's the thing I think about when I'm up early working on this before my day job starts. It's what drives me to pick it up again after I get my daughter to bed, and it's what makes the lost sleep feel worth it.
+
+## what this blog is
+
+This blog is going to be where I document the whole process. Technical decisions, design decisions, the places where those end up being the same decision. Things I got wrong and had to redo. What it's actually like going from someone who makes recommendations for a living to someone who ships software, with all the humbling parts of that transition included.
+
+If you're a non-technical person who's been thinking about picking up a coding tool, or someone who already started building and isn't sure what comes next, I hope some of this will resonate. I don't have it figured out, but I'd rather write about it now while it's messy than wait until the story is clean enough to be useless.
