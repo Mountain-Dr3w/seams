@@ -34,7 +34,7 @@ export default function RootLayout({
         <header className="border-b border-[var(--border)] px-6 sm:px-10 py-4 flex items-center justify-between">
           <Link href="/" className="flex items-center gap-3 group">
             <RabbitMark />
-            <span className="font-serif text-sm text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
+            <span className="font-serif text-lg text-[var(--text-primary)] group-hover:text-[var(--accent)] transition-colors">
               seams
             </span>
           </Link>
