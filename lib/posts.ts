@@ -44,12 +44,14 @@ export function getAllPosts(): PostMeta[] {
 }
 
 export function getPost(slug: string): Post | null {
-  const safe = safeSlug(slug);
-  if (!safe) return null;
-  const safeName = path.basename(`${safe}.mdx`);
-  const filePath = path.join(POSTS_DIR, safeName);
-  if (!fs.existsSync(filePath)) return null;
+  if (!fs.existsSync(POSTS_DIR)) return null;
 
+  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
+  const filename = files.find((f) => f.replace(/\.mdx$/, "") === slug);
+  if (!filename) return null;
+
+  const safeName = path.basename(filename);
+  const filePath = path.join(POSTS_DIR, safeName);
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
 
