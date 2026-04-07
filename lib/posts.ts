@@ -26,24 +26,23 @@ export function getAllPosts(): PostMeta[] {
 
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
 
-  return files
-    .map((filename) => {
-      const slug = filename.replace(/\.mdx$/, "");
-      const safeName = path.basename(filename);
-      const filePath = path.resolve(POSTS_DIR, safeName);
-      if (!filePath.startsWith(POSTS_DIR)) return null;
-      const raw = fs.readFileSync(filePath, "utf-8");
-      const { data } = matter(raw);
-      return {
-        slug,
-        title: data.title ?? slug,
-        date: data.date ?? "",
-        description: data.description ?? "",
-        tags: data.tags ?? [],
-      };
-    })
-    .filter((post): post is PostMeta => post !== null)
-    .sort((a, b) => (a.date < b.date ? 1 : -1));
+  const posts: PostMeta[] = [];
+  for (const filename of files) {
+    const slug = filename.replace(/\.mdx$/, "");
+    const safeName = path.basename(filename);
+    const filePath = path.resolve(POSTS_DIR, safeName);
+    if (!filePath.startsWith(POSTS_DIR)) continue;
+    const raw = fs.readFileSync(filePath, "utf-8");
+    const { data } = matter(raw);
+    posts.push({
+      slug,
+      title: data.title ?? slug,
+      date: data.date ?? "",
+      description: data.description ?? "",
+      tags: data.tags ?? [],
+    });
+  }
+  return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPost(slug: string): Post | null {
