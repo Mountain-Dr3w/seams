@@ -30,7 +30,9 @@ export function getAllPosts(): PostMeta[] {
     .map((filename) => {
       const slug = filename.replace(/\.mdx$/, "");
       const safeName = path.basename(filename);
-      const raw = fs.readFileSync(path.join(POSTS_DIR, safeName), "utf-8");
+      const filePath = path.resolve(POSTS_DIR, safeName);
+      if (!filePath.startsWith(POSTS_DIR)) return null;
+      const raw = fs.readFileSync(filePath, "utf-8");
       const { data } = matter(raw);
       return {
         slug,
@@ -40,10 +42,12 @@ export function getAllPosts(): PostMeta[] {
         tags: data.tags ?? [],
       };
     })
+    .filter((post): post is PostMeta => post !== null)
     .sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getPost(slug: string): Post | null {
+  if (!safeSlug(slug)) return null;
   if (!fs.existsSync(POSTS_DIR)) return null;
 
   const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
@@ -51,7 +55,8 @@ export function getPost(slug: string): Post | null {
   if (!filename) return null;
 
   const safeName = path.basename(filename);
-  const filePath = path.join(POSTS_DIR, safeName);
+  const filePath = path.resolve(POSTS_DIR, safeName);
+  if (!filePath.startsWith(POSTS_DIR)) return null;
   const raw = fs.readFileSync(filePath, "utf-8");
   const { data, content } = matter(raw);
 
