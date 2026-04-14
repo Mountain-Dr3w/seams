@@ -1,12 +1,8 @@
 import Link from "next/link";
 import { getAllPosts } from "@/lib/posts";
 
-export default function Home() {
-  const posts = getAllPosts();
-  const allTags = Array.from(
-    new Set(posts.flatMap((p) => p.tags ?? []))
-  ).sort();
-
+export default async function Home() {
+  const posts = await getAllPosts();
   return (
     <div>
       <div className="mb-12">
@@ -18,18 +14,7 @@ export default function Home() {
         </p>
       </div>
 
-      {allTags.length > 0 && (
-        <div className="flex gap-3 mb-8 flex-wrap">
-          {allTags.map((tag) => (
-            <span
-              key={tag}
-              className="font-mono text-[0.65rem] text-[var(--text-muted)] uppercase tracking-wide border border-[var(--border)] px-2 py-1 hover:border-[var(--border-active)] hover:text-[var(--text-secondary)] transition-colors cursor-default"
-            >
-              {tag}
-            </span>
-          ))}
-        </div>
-      )}
+
 
       {posts.length === 0 ? (
         <p className="font-serif text-sm text-[var(--text-muted)] italic">
@@ -55,18 +40,6 @@ export default function Home() {
                   <p className="font-serif text-sm text-[var(--text-secondary)] leading-relaxed">
                     {post.description}
                   </p>
-                )}
-                {post.tags && post.tags.length > 0 && (
-                  <div className="flex gap-2 mt-2">
-                    {post.tags.map((tag) => (
-                      <span
-                        key={tag}
-                        className="font-mono text-[0.65rem] text-[var(--text-muted)] uppercase tracking-wide"
-                      >
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
                 )}
               </Link>
             </article>

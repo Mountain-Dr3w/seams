@@ -1,8 +1,9 @@
-import fs from "fs";
-import path from "path";
 import matter from "gray-matter";
 
-const POSTS_DIR = path.join(process.cwd(), "posts");
+const GITHUB_RAW_BASE =
+  "https://raw.githubusercontent.com/Mountain-Dr3w/seams/main/posts";
+const GITHUB_API_BASE =
+  "https://api.github.com/repos/Mountain-Dr3w/seams/contents/posts";
 
 export interface PostMeta {
   slug: string;
@@ -21,18 +22,32 @@ function safeSlug(slug: string): string | null {
   return slug;
 }
 
-export function getAllPosts(): PostMeta[] {
-  if (!fs.existsSync(POSTS_DIR)) return [];
+async function fetchPostContent(slug: string): Promise<string | null> {
+  const res = await fetch(`${GITHUB_RAW_BASE}/${slug}.mdx`, {
+    next: { tags: ["posts"] },
+  });
+  if (!res.ok) return null;
+  return res.text();
+}
 
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
+interface GitHubFileEntry {
+  name: string;
+}
+
+export async function getAllPosts(): Promise<PostMeta[]> {
+  const res = await fetch(GITHUB_API_BASE, {
+    next: { tags: ["posts"] },
+  });
+  if (!res.ok) return [];
+
+  const files = (await res.json()) as GitHubFileEntry[];
+  const mdxFiles = files.filter((f) => f.name.endsWith(".mdx"));
 
   const posts: PostMeta[] = [];
-  for (const filename of files) {
-    const slug = filename.replace(/\.mdx$/, "");
-    const safeName = path.basename(filename);
-    const filePath = path.resolve(POSTS_DIR, safeName);
-    if (!filePath.startsWith(POSTS_DIR)) continue;
-    const raw = fs.readFileSync(filePath, "utf-8");
+  for (const file of mdxFiles) {
+    const slug = file.name.replace(/\.mdx$/, "");
+    const raw = await fetchPostContent(slug);
+    if (!raw) continue;
     const { data } = matter(raw);
     posts.push({
       slug,
@@ -45,20 +60,11 @@ export function getAllPosts(): PostMeta[] {
   return posts.sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
-export function getPost(slug: string): Post | null {
+export async function getPost(slug: string): Promise<Post | null> {
   if (!safeSlug(slug)) return null;
-  if (!fs.existsSync(POSTS_DIR)) return null;
-
-  const files = fs.readdirSync(POSTS_DIR).filter((f) => f.endsWith(".mdx"));
-  const filename = files.find((f) => f.replace(/\.mdx$/, "") === slug);
-  if (!filename) return null;
-
-  const safeName = path.basename(filename);
-  const filePath = path.resolve(POSTS_DIR, safeName);
-  if (!filePath.startsWith(POSTS_DIR)) return null;
-  const raw = fs.readFileSync(filePath, "utf-8");
+  const raw = await fetchPostContent(slug);
+  if (!raw) return null;
   const { data, content } = matter(raw);
-
   return {
     slug,
     title: data.title ?? slug,
